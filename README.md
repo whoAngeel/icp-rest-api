@@ -1,12 +1,12 @@
 # Voting system
 
-This is a simple voting system that allows users to create polls and vote on them. The system is designed to be used by a single organization, and the admin can add and remove moderators. The admin and moderators can also ban users from creating polls.
+This is a simple voting system that allows users to create polls and vote on them. The system is designed to be used by multiple organizations
 
 
 ### Key Features
 
 1. **Polls Management**
-   - **Add Poll:** Users can add new Polls with details like question, options, and end time.
+   - **Add Poll:** Users can add new Polls with details like question, start date and end time.
    - **Update Poll:** Only the creator can update a Poll's details.
    - **Delete Poll:** Individial polls can be deleted by the creator.
 
