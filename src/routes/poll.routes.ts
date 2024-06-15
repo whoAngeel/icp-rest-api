@@ -1,9 +1,25 @@
 import { Router } from "express";
 import { PollCreateDTO } from "../entities/Poll";
 import { PollRepository } from "../repositories/PollRepository";
+import { VoteRepository } from "../repositories/VoteRepository";
 
 const app = Router();
+const voteRepository = new VoteRepository();
 const pollRepository = new PollRepository();
+
+app.post("/polls/:id/vote", (req, res) => {
+    const id = req.params.id;
+    const { choice } = req.body;
+
+    const result = voteRepository.vote(id, choice);
+
+    if (result.isOk()) {
+        res.json(result.getValue())
+    } else {
+        res.status(400).send(result.getError())
+    }
+
+});
 
 app.post("/polls", (req, res) => {
     const { creatorName, question, startDate, endDate } = req.body;
@@ -19,7 +35,18 @@ app.post("/polls", (req, res) => {
 });
 
 app.get("/polls", (req, res) => {
-    res.json(pollRepository.findAll());
+    const polls = pollRepository.findAll();
+
+    const pollsWithVotes = polls.map(poll => ({
+        id: poll.id,
+        creatorName: poll.creatorName,
+        question: poll.question,
+        startDate: poll.startDate,
+        endDate: poll.endDate,
+        votes: voteRepository.fromPoll(poll.id).map(vote => vote.choice)
+    }));
+
+    res.json(pollsWithVotes);
 });
 
 // Retrieve one poll based on the provided id
