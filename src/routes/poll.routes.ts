@@ -55,7 +55,12 @@ app.get("/polls/:id", (req, res) => {
     const result = pollRepository.findById(pollId);
 
     if (result.isOk()) {
-        res.json(result.getValue())
+        const poll = {
+            ...result.getValue(),
+            votes: voteRepository.fromPoll(pollId).map(vote => vote.choice)
+        }
+        
+        res.json(poll);
     } else {
         res.status(400).send(result.getError())
     }

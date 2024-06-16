@@ -72,3 +72,27 @@ http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000
 ```
 
 With this URL, you can interact with the canister using an HTTP client of your choice. We are going to use `curl`.
+
+## Usage
+
+### Get Polls
+```
+curl http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/polls
+```
+
+### Create Poll
+```
+curl -X POST http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/polls -H "Content-type: application/json" -d '{
+    "question": "What is your favorite programming language",
+    "creatorName": "carlos Sosa",
+    "startDate": "2024-04-04",
+    "endDate": "2024-05-04"
+}'
+```
+
+### Vote on a Poll given a poll id
+```
+curl -X POST http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/polls/50116dad-c203-4259-9175-043fce881ccd/vote -H "Content-type: application/json" -d '{
+    "choice": "JavaScript"
+}'
+```
