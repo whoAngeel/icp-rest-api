@@ -23,3 +23,9 @@ export interface IReport{
     createdAt: Date,
     history: IHistory[]
 }
+
+/*
+// curl http://b77ix-eeaaa-aaaaa-qaada-cai.localhost:8000/reports
+curl http://bw4dl-smaaa-aaaaa-qaacq-cai.localhost:8000/reports
+
+*/
