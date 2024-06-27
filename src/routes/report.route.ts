@@ -29,9 +29,7 @@ router.get('/:id', (req, res) => {
     const { id } = req.params
     const rta = reportRepository.findById(id)
     if (rta.isOk()) {
-        const report = {
-            ...rta.getValue()
-        }
+        res.json(rta.getValue())
     } else {
         res.status(400).send(rta.getError())
     }
