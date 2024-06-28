@@ -26,20 +26,20 @@ export class Reports implements IReport {
         this.location = location
         this.history.push({
             description: "Creando el reporte",
-            date: getCurrentDate()
+            date: getCurrentDate(),
+            author: creatorAddress
+
         })
     }
 
-    public addHistory(description: string){
+    public addHistory(description: string, author: string){
         this.history.push({
             description,
-            date: getCurrentDate()
+            date: getCurrentDate(),
+            author,
         })
     }
 
-    public updateStatus(status: 'pendiente' | 'en proceso' | 'resuelto'){
-        this.status=status
-        this.addHistory(`Actualizando el reporte ${this.id} a ${status}.`)
-    }
+   
     // END CLASS
 }

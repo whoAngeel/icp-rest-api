@@ -37,7 +37,10 @@ export class ReportRepository {
             status,
             history: [
                 ...report.history,
-                {description:  `Actualizando el reporte ${report.id} de ${report.status} a ${status}`, date: getCurrentDate()}
+                {description:  `Actualizando el reporte ${report.id} de ${report.status} a ${status}`, 
+                date: getCurrentDate(),
+                author: ic.caller().toString()
+             }
             ]
         }
                 

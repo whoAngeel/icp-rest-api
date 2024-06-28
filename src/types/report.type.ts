@@ -11,7 +11,9 @@ export interface ILocation{
 
 export interface IHistory{
     description: string
-    date: Date
+    date: Date,
+    author: string
+
 }
 
 export interface IReport{
