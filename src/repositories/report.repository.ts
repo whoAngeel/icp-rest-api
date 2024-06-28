@@ -4,8 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { getCurrentDate } from '../helpers/CurrentDate';
 import { Reports as Report } from '../entities/report.class';
 import { IImage, ILocation } from '../types/report.type';
-import { id } from 'azle/src/lib/ic/id';
-import { pollForResponse } from '@dfinity/agent/lib/cjs/polling';
 
 
 export class ReportRepository {
