@@ -8,16 +8,19 @@ export class Reports implements IReport {
     status: "pendiente" | "en proceso" | "resuelto";
     location: ILocation
     createdAt: Date;
+    creatorAddress: string
     history: IHistory[] = []
     public constructor(
         id: string,
         description: string,
         images: IImage[],
-        location: ILocation
+        location: ILocation,
+        creatorAddress: string
     ) {
         this.id = id
         this.description = description
         this.images = images
+        this.creatorAddress = creatorAddress
         this.status = 'pendiente'
         this.createdAt = getCurrentDate()
         this.location = location
