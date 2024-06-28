@@ -28,15 +28,18 @@ export class ReportRepository {
         id: string,
         status: 'pendiente' | 'en proceso' | 'resuelto',
     ):ErrorOr<Report> {
-        const report: Report = this.reportsStorage.get(id)
-        if ("None" in report) {
-            return ErrorOr.error(`Report not found`)
+        const report = this.reportsStorage.get(id)
+        const updatedReport:Report = {
+            ...report,
+            status
         }
+        
         let descriptionMsg = `Actualizando el reporte ${report.id} de ${report.status} a ${status}`
 
-        report.addHistory(descriptionMsg)
-        this.reportsStorage.insert(id, report)
-        return ErrorOr.ok(report)
+        updatedReport.history.push({description: descriptionMsg, date: getCurrentDate()})
+        
+        this.reportsStorage.insert(id, updatedReport)
+        return ErrorOr.ok(updatedReport)
 
     }
 

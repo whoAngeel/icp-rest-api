@@ -35,4 +35,14 @@ router.get('/:id', (req, res) => {
     }
 })
 
+router.patch('/:id', (req, res) => {// TODO: cambiar endpoint
+    const { id } = req.params
+    const rta = reportRepository.updateReportStatus(id, 'en proceso')
+    if (rta.isOk()) {
+        res.json(rta.getValue())
+    } else {
+        res.status(400).send(rta.getError())
+    }
+})
+
 export default router
