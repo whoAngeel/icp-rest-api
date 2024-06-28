@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
     }
 })
 
-router.patch('/:id', (req, res) => {// TODO: cambiar endpoint
+router.patch('/status/:id', (req, res) => {// TODO: cambiar endpoint
     const { id } = req.params
     const rta = reportRepository.updateReportStatus(id, 'en proceso')
     if (rta.isOk()) {
