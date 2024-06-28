@@ -29,49 +29,50 @@ export class ReportRepository {
     public updateReportStatus(
         id: string,
         status: 'pendiente' | 'en proceso' | 'resuelto',
-    ):ErrorOr<Report> {
+    ): ErrorOr<Report> {
         const reportOpt = this.reportsStorage.get(id)
         const report = reportOpt.Some
-        const updatedReport:Report = {
+        const updatedReport: Report = {
             ...report,
             status,
             history: [
                 ...report.history,
-                {description:  `Actualizando el reporte ${report.id} de ${report.status} a ${status}`, 
-                date: getCurrentDate(),
-                author: ic.caller().toString()
-             }
+                {
+                    description: `Actualizando el reporte ${report.id} de ${report.status} a ${status}`,
+                    date: getCurrentDate(),
+                    author: ic.caller().toString()
+                }
             ]
         }
-                
+
         this.reportsStorage.insert(id, updatedReport)
         return ErrorOr.ok(updatedReport)
 
     }
 
-    public findById(id: string):ErrorOr<Report>{
+    public findById(id: string): ErrorOr<Report> {
         const report = this.reportsStorage.get(id)
-        if("None" in report){
+        if ("None" in report) {
             return ErrorOr.error(`Reporte con el id ${id} no se encontro`)
         }
         return ErrorOr.ok(report.Some)
     }
 
-    public findAll():Report[]{
+    public findAll(): Report[] {
         return this.reportsStorage.values()
     }
 
-    private validateUpdate(id: string) : ErrorOr<Report>{ // TODO: ESTO NO SE OCUPA, AUN xd
+    private validateUpdate(id: string): ErrorOr<Report> { // TODO: ESTO NO SE OCUPA, AUN xd
         const reportOpt = this.reportsStorage.get(id)
-        if("None" in reportOpt){
+        if ("None" in reportOpt) {
             return ErrorOr.error("Report not found")
         }
         const report = reportOpt.Some
         return ErrorOr.ok(report)
     }
 
-    private isAuthorized(report: Report):bool{
-        return ic.caller().toString()===report.creatorAddress;
+    private isAuthorized(report: Report): bool {
+        return ic.caller().toString() === report.creatorAddress;
     }
 
 }

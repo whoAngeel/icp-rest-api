@@ -6,7 +6,9 @@ export interface IImage{
 export interface ILocation{
     address?: string;
     lat: number,
-    long: number
+    long: number,
+    municipality: string
+    state: string
 }
 
 export interface IHistory{
