@@ -1,6 +1,6 @@
-# Voting system
+# reporting system
 
-This is a simple voting system that allows users to create polls and vote on them. The system is designed to be used by multiple organizations
+Report creation system for water-related problems, such as leaks, contamination, among others.
 
 
 ### Key Features
