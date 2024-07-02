@@ -2,8 +2,10 @@
 
 Report creation system for water-related problems, such as leaks, contamination, among others.
 
-
-
+FrontEnd: https://github.com/ama13do/FlowFinder
+BackEnd: https://github.com/whoAngeel/icp-rest-api
+video prototipo: https://drive.google.com/file/d/1Y9yj1sGuWDnbHeGGfjcKbwfEeTcSGwl5/view?usp=sharing 
+link del documento: https://drive.google.com/file/d/14siaPUTQCftX4kYSjLGQQ1kRSm6ddyTr/view?usp=sharing
 
 
 ## Prerequisities
