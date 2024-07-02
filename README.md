@@ -3,12 +3,8 @@
 Report creation system for water-related problems, such as leaks, contamination, among others.
 
 
-### Key Features
 
-1. **Polls Management**
-   - **Add Poll:** Users can add new Polls with details like question, start date and end time.
-   - **Update Poll:** Only the creator can update a Poll's details.
-   - **Delete Poll:** Individial polls can be deleted by the creator.
+
 
 ## Prerequisities
 
@@ -49,50 +45,5 @@ AZLE_AUTORELOAD=true dfx deploy
 9. Stop a local replica
 - `dfx stop`
 
-## Interaction with the canister
 
-When a canister is deployed, `dfx deploy` produces a link to the Candid interface in the shell output.
 
-Candid interface provides a simple UI where you can interact with functions in the canister.
-
-On the other hand, you can interact with the canister using `dfx` via CLI:
-
-### get canister id:
-- `dfx canister id <CANISTER_NAME>`
-Example:
-- `dfx canister id icp_azle_learning_platform`
-Response:
-```
-bkyz2-fmaaa-aaaaa-qaaaq-cai
-```
-
-Now, the URL of your canister should like this:
-```
-http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000
-```
-
-With this URL, you can interact with the canister using an HTTP client of your choice. We are going to use `curl`.
-
-## Usage
-
-### Get Polls
-```
-curl http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/polls
-```
-
-### Create Poll
-```
-curl -X POST http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/polls -H "Content-type: application/json" -d '{
-    "question": "What is your favorite programming language",
-    "creatorName": "carlos Sosa",
-    "startDate": "2024-04-04",
-    "endDate": "2024-05-04"
-}'
-```
-
-### Vote on a Poll given a poll id
-```
-curl -X POST http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:8000/polls/50116dad-c203-4259-9175-043fce881ccd/vote -H "Content-type: application/json" -d '{
-    "choice": "JavaScript"
-}'
-```
